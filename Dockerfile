@@ -2,7 +2,7 @@ FROM python:3.14-alpine
 
 ARG TARGETARCH
 ARG TARGETOS
-ARG SUPERCRONIC_VERSION=0.2.41
+ARG SUPERCRONIC_VERSION=0.2.40
 
 # Latest releases available at https://github.com/aptible/supercronic/releases
 ENV SUPERCRONIC_URL=https://github.com/aptible/supercronic/releases/download/v$SUPERCRONIC_VERSION/supercronic-$TARGETOS-$TARGETARCH \
