@@ -1,0 +1,36 @@
+name: Build and test image
+
+on:
+  push:
+    branches: [ main ]
+    tags: [ 'v*' ]
+  pull_request:
+    branches:
+      - main
+
+permissions:
+  contents: read
+  packages: write
+
+jobs:
+  build-and-test:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v6.0.1
+
+      - name: Setup Docker Buildx
+        uses: docker/setup-buildx-action@v3.12.0
+
+      - name: Build image (local only)
+        uses: docker/build-push-action@v6.18.0
+        with:
+          context: .
+          load: true
+          tags: test-image:ci
+
+      - name: Smoke test container
+        shell: bash
+        run: |
+          docker run --rm test-image:ci --test
