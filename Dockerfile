@@ -1,12 +1,13 @@
 FROM python:3.14-alpine
 
+ARG TARGETARCH
+ARG TARGETOS
+
 # Latest releases available at https://github.com/aptible/supercronic/releases
-ENV SUPERCRONIC_URL=https://github.com/aptible/supercronic/releases/download/v0.2.41/supercronic-linux-arm64 \
-    SUPERCRONIC_SHA1SUM=44e10e33e8d98b1d1522f6719f15fb9469786ff0 \
-    SUPERCRONIC=supercronic-linux-arm64
+ENV SUPERCRONIC_URL=https://github.com/aptible/supercronic/releases/download/v0.2.41/supercronic-$TARGETOS-$TARGETARCH \
+    SUPERCRONIC=supercronic-$TARGETOS-$TARGETARCH
 
 RUN wget -q "$SUPERCRONIC_URL" \
- && echo "${SUPERCRONIC_SHA1SUM}  ${SUPERCRONIC}" | sha1sum -c - \
  && chmod +x "$SUPERCRONIC" \
  && mv "$SUPERCRONIC" "/usr/local/bin/${SUPERCRONIC}" \
  && ln -s "/usr/local/bin/${SUPERCRONIC}" /usr/local/bin/supercronic \
