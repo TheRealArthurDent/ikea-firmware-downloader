@@ -2,9 +2,10 @@ FROM python:3.14-alpine
 
 ARG TARGETARCH
 ARG TARGETOS
+ARG SUPERCRONIC_VERSION=0.2.41
 
 # Latest releases available at https://github.com/aptible/supercronic/releases
-ENV SUPERCRONIC_URL=https://github.com/aptible/supercronic/releases/download/v0.2.41/supercronic-$TARGETOS-$TARGETARCH \
+ENV SUPERCRONIC_URL=https://github.com/aptible/supercronic/releases/download/v$SUPERCRONIC_VERSION/supercronic-$TARGETOS-$TARGETARCH \
     SUPERCRONIC=supercronic-$TARGETOS-$TARGETARCH
 
 RUN wget -q "$SUPERCRONIC_URL" \
@@ -19,14 +20,11 @@ VOLUME /home/downloader/otau
 
 WORKDIR /home/downloader
 
-# Copy files
 COPY --chown=downloader:downloader --chmod=544 entrypoint.sh .
 COPY --chown=downloader:downloader --chmod=544 download-ikea-firmware.sh .
 COPY --chown=downloader:downloader --chmod=444 crontab .
 
-#RUN crontab crontab
-
 USER downloader
 
-# Run cron on container startup
+# Run supercronic on container startup
 ENTRYPOINT ["./entrypoint.sh"]
