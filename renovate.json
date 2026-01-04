@@ -4,8 +4,8 @@
     {
       "customType": "regex",
       "description": "Update supercronic",
-      "fileMatch": [
-        "(^|/)Dockerfile$"
+      "managerFilePatterns": [
+        "/(^|/)Dockerfile$/"
       ],
       "matchStrings": [
         "ARG\\s+SUPERCRONIC_VERSION=(?<currentValue>\\d+\\.\\d+\\.\\d+)"
