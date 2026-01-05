@@ -1,9 +1,6 @@
 name: Build and test image
 
 on:
-  push:
-    branches: [ main ]
-    tags: [ 'v*' ]
   pull_request:
     branches:
       - main
