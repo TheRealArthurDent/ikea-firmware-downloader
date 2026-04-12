@@ -1,4 +1,4 @@
-name: Review dog
+name: 🐶 Review dog
 
 on:
   pull_request:
