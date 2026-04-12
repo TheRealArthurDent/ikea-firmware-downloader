@@ -1,0 +1,26 @@
+name: 🔍 Config Validator
+
+on:
+  pull_request:
+    branches:
+      - main
+  push:
+    branches:
+      - main
+
+jobs:
+  validate:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v6.0.2
+
+      - name: Set up Node
+        uses: actions/setup-node@v6.3.0
+        with:
+          node-version: '24'
+
+      - name: Run renovate config validator
+        uses: rinchsan/renovate-config-validator@v0.2.0
+        with:
+          pattern: 'renovate.json'
