@@ -21,6 +21,6 @@ jobs:
           node-version: '24'
 
       - name: Run renovate config validator
-        uses: rinchsan/renovate-config-validator@v0.2.0
+        uses: rinchsan/renovate-config-validator@v0.2.1
         with:
           pattern: 'renovate.json'
