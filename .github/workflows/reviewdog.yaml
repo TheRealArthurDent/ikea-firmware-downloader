@@ -19,7 +19,7 @@ jobs:
           locale: US
 
       - name: Action lint
-        uses: reviewdog/action-actionlint@v1.80.1
+        uses: reviewdog/action-actionlint@v1.80.2
         with:
           reporter: github-pr-review
 
