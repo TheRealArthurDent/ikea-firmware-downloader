@@ -29,7 +29,7 @@ jobs:
           reporter: github-pr-review
 
       - name: YAML lint
-        uses: reviewdog/action-yamllint@v1.25.2
+        uses: reviewdog/action-yamllint@v1.25.3
         with:
           reporter: github-pr-review
 
